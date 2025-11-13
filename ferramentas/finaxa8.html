@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora do prazo MED (Pix)</title>
+  <meta name="description" content="Digite a data do seu Pix e descubra até quando você pode solicitar devolução via MED do Banco Central. Confira também checklist e passos por banco.">
+
+  <!-- SEO -->
+  <meta property="og:title" content="Calculadora do prazo MED (Pix)">
+  <meta property="og:description" content="Calcule até quando você pode pedir devolução via MED do Banco Central. Ferramenta prática, passo a passo e checklist.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://finaxa.me/calculadora-med-pix">
+  <meta property="og:image" content="https://finaxa.me/img/calculadora-med-pix.jpg">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #1a73e8;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #1a73e8;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1558b0;
+    }
+    .resultado, .checklist {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f1f5f9;
+      border-radius: 8px;
+    }
+    .checklist ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora do Prazo MED (Pix)</h1>
+    <p>Digite a data em que você fez o Pix para descobrir até quando pode solicitar devolução via MED (80 dias corridos):</p>
+
+    <label for="dataPix">Data do Pix:</label>
+    <input type="date" id="dataPix">
+    <button onclick="calcularPrazo()">Calcular prazo final</button>
+
+    <div id="resultado" class="resultado" style="display:none;"></div>
+
+    <div class="checklist">
+      <h2>Checklist para pedir devolução via MED</h2>
+      <ul>
+        <li>Data e hora exata da transação</li>
+        <li>Comprovante do Pix</li>
+        <li>Relato claro do ocorrido (golpe, fraude, engano)</li>
+        <li>Boletim de Ocorrência (recomendado)</li>
+        <li>Contato com o banco de destino</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function calcularPrazo() {
+      const dataPix = document.getElementById("dataPix").value;
+      if (!dataPix) {
+        alert("Por favor, selecione a data do Pix.");
+        return;
+      }
+      const data = new Date(dataPix);
+      data.setDate(data.getDate() + 80);
+      const prazoFinal = data.toLocaleDateString("pt-BR");
+
+      const resultado = document.getElementById("resultado");
+      resultado.style.display = "block";
+      resultado.innerHTML = `<strong>Prazo final:</strong> ${prazoFinal}<br><br>
+      Agora, abra chamado no seu banco informando golpe/fraude e solicite abertura de MED.<br>
+      Recomenda-se também registrar Boletim de Ocorrência.`;
+    }
+  </script>
+
+  <!-- Schema Markup HowTo + FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Calculadora do prazo MED (Pix)",
+    "description": "Digite a data do seu Pix e descubra até quando você pode solicitar devolução via MED do Banco Central.",
+    "mainEntity": [
+      {
+        "@type": "HowTo",
+        "name": "Calcular prazo e pedir devolução via MED (Pix)",
+        "description": "Use esta calculadora para descobrir a data limite de 80 dias e saiba os passos para abrir chamado no banco e anexar provas.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Localizar comprovante",
+            "text": "Encontre a data e hora exatas no comprovante do Pix."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Calcular prazo",
+            "text": "Insira a data do Pix na calculadora. Ela somará 80 dias corridos."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Abrir chamado",
+            "text": "No seu banco, peça a abertura de contestação MED anexando o comprovante."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Registrar BO",
+            "text": "Faça boletim de ocorrência e anexe para reforçar a solicitação."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qual é o prazo para pedir devolução via MED?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O prazo máximo é de 80 dias corridos após a data do Pix. Esta calculadora já faz a conta para você."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O banco é obrigado a devolver?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. O banco pode reter valores, mas a devolução depende da análise do caso."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Pix devolve na hora?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. A devolução depende da análise após pedido via MED, e pode levar alguns dias."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Preciso fazer BO antes de abrir chamado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não é obrigatório, mas é altamente recomendado, pois serve como prova extra."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</body>
+</html>

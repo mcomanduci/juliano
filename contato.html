@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contato - finance.me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#007bff",
+              "dark-blue": "#0056b3",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="font-sans text-gray-800 bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-5 flex justify-between items-center py-4"
+      >
+        <a href="index.html" class="text-2xl font-bold text-primary"
+          >finance.me</a
+        >
+        <button
+          id="menu-toggle"
+          class="lg:hidden text-3xl"
+          aria-label="Abrir menu"
+        >
+          ☰
+        </button>
+        <nav
+          id="main-nav"
+          class="hidden lg:block absolute lg:relative top-full left-0 right-0 lg:top-auto bg-white lg:bg-transparent shadow-lg lg:shadow-none"
+        >
+          <ul class="flex flex-col lg:flex-row lg:gap-6">
+            <li>
+              <a
+                href="index.html"
+                class="block px-5 py-3 lg:p-0 font-semibold text-gray-800 border-b border-gray-200 lg:border-b-0 lg:border-b-2 lg:border-transparent hover:text-primary hover:border-primary transition"
+                >Início</a
+              >
+            </li>
+            <li>
+              <a
+                href="blog.html"
+                class="block px-5 py-3 lg:p-0 font-semibold text-gray-800 border-b border-gray-200 lg:border-b-0 lg:border-b-2 lg:border-transparent hover:text-primary hover:border-primary transition"
+                >Blog</a
+              >
+            </li>
+            <li class="relative group">
+              <a
+                href="#"
+                class="dropdown-toggle block px-5 py-3 lg:p-0 font-semibold text-gray-800 border-b border-gray-200 lg:border-b-0 hover:text-primary transition cursor-pointer"
+                >Ferramentas Financeiras ▾</a
+              >
+              <div
+                class="dropdown-menu hidden group-hover:lg:block lg:absolute lg:top-full lg:left-0 bg-gray-50 lg:bg-white lg:min-w-[240px] lg:rounded-lg lg:shadow-xl lg:py-2"
+              >
+                <a
+                  href="#"
+                  class="block px-8 lg:px-4 py-3 hover:bg-gray-100 hover:text-primary transition"
+                  >Calculadora de Juros Compostos</a
+                >
+                <a
+                  href="#"
+                  class="block px-8 lg:px-4 py-3 hover:bg-gray-100 hover:text-primary transition"
+                  >Simulador de Aposentadoria</a
+                >
+                <a
+                  href="#"
+                  class="block px-8 lg:px-4 py-3 hover:bg-gray-100 hover:text-primary transition"
+                  >Planilha de Orçamento</a
+                >
+              </div>
+            </li>
+            <li>
+              <a
+                href="contato.html"
+                class="block px-5 py-3 lg:p-0 font-semibold text-primary border-b-2 border-primary lg:border-b-2 hover:text-primary transition"
+                >Contato</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="py-20">
+        <div class="max-w-7xl mx-auto px-5">
+          <h1 class="text-4xl font-bold text-center mb-3">Entre em Contato</h1>
+          <p class="text-center text-lg text-gray-600 mb-12">
+            Tem alguma dúvida, sugestão ou parceria em mente? Adoraríamos ouvir
+            você.
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-12">
+            <!-- Contact Form -->
+            <div class="lg:col-span-2">
+              <form action="#" method="POST" class="space-y-6">
+                <div>
+                  <label for="name" class="block font-semibold mb-2"
+                    >Seu Nome</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="John Doe"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block font-semibold mb-2"
+                    >Seu E-mail</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="john.doe@example.com"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition"
+                  />
+                </div>
+                <div>
+                  <label for="message" class="block font-semibold mb-2"
+                    >Sua Mensagem</label
+                  >
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="6"
+                    required
+                    placeholder="Digite sua mensagem aqui..."
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition resize-none"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="bg-primary text-white font-semibold px-8 py-4 rounded-lg hover:bg-dark-blue transform hover:-translate-y-1 transition"
+                >
+                  Enviar Mensagem
+                </button>
+              </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+              <h3 class="text-2xl font-bold mb-4">Informações de Contato</h3>
+              <p class="text-gray-600 mb-4">
+                Sinta-se à vontade para nos contatar por e-mail ou seguir-nos
+                nas redes sociais.
+              </p>
+              <ul class="space-y-3 mb-6">
+                <li><strong>E-mail:</strong> contato@finance.me</li>
+                <li><strong>Redes Sociais:</strong></li>
+              </ul>
+              <div class="flex gap-4">
+                <a href="#" class="text-primary font-semibold hover:underline"
+                  >Facebook</a
+                >
+                <a href="#" class="text-primary font-semibold hover:underline"
+                  >Instagram</a
+                >
+                <a href="#" class="text-primary font-semibold hover:underline"
+                  >Twitter</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-center py-5 border-t border-gray-200 mt-20">
+      <div class="max-w-7xl mx-auto px-5">
+        <p class="text-sm text-gray-600">
+          &copy; 2025 finance.me. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

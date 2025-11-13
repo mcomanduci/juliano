@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 🎯 Teste de Perfil Emocional Financeiro – Finaxa -->
+    <div id="finaxa-quiz" style="margin: auto; max-width: 1200px">
+      <style>
+        #finaxa-quiz {
+          font-family: Arial, sans-serif;
+          background: #f9fafb;
+          color: #333;
+        }
+        .quiz-container {
+          display: flex;
+          height: 100%;
+          flex-wrap: wrap;
+        }
+        .quiz-panel,
+        .result-panel {
+          flex: 1;
+          min-width: 300px;
+          padding: 30px;
+          box-sizing: border-box;
+        }
+        .quiz-panel {
+          background: white;
+          border-right: 1px solid #eee;
+        }
+        .result-panel {
+          background: #eaf5f0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        .question {
+          font-size: 22px;
+          margin-bottom: 20px;
+          font-weight: bold;
+        }
+        .options button {
+          display: block;
+          width: 100%;
+          margin: 10px 0;
+          padding: 14px;
+          font-size: 16px;
+          background: #027a4f;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background 0.3s;
+        }
+        .options button:hover {
+          background: #015c3b;
+        }
+        .progress {
+          margin-top: 30px;
+          height: 10px;
+          background: #ddd;
+          border-radius: 5px;
+          overflow: hidden;
+        }
+        .progress-bar {
+          height: 100%;
+          background: #027a4f;
+          width: 0%;
+          transition: width 0.3s ease;
+        }
+        .result-title {
+          font-size: 24px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+        .result-text {
+          font-size: 18px;
+          max-width: 400px;
+        }
+      </style>
+
+      <div class="quiz-container">
+        <div class="quiz-panel">
+          <div id="pergunta" class="question">Carregando pergunta...</div>
+          <div class="options" id="opcoes"></div>
+          <div class="progress">
+            <div class="progress-bar" id="barraProgresso"></div>
+          </div>
+        </div>
+        <div class="result-panel">
+          <div id="resultado" class="result-content">
+            <div class="result-title">Descubra seu perfil!</div>
+            <div class="result-text">
+              Responda às perguntas ao lado para ver seu resultado.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const perguntas = [
+            {
+              texto: "Como você reage ao ver uma cobrança inesperada?",
+              opcoes: [
+                {
+                  texto: "Me desespero e evito pensar no assunto",
+                  pontuacao: 1,
+                },
+                { texto: "Fico nervoso, mas busco resolver", pontuacao: 2 },
+                { texto: "Analiso, reajusto o orçamento e pago", pontuacao: 3 },
+              ],
+            },
+            {
+              texto: "Você acompanha seus gastos com frequência?",
+              opcoes: [
+                { texto: "Raramente", pontuacao: 1 },
+                { texto: "Algumas vezes no mês", pontuacao: 2 },
+                { texto: "Todos os dias ou semanalmente", pontuacao: 3 },
+              ],
+            },
+            {
+              texto: "Quando vai comprar algo, você costuma...",
+              opcoes: [
+                { texto: "Comprar por impulso", pontuacao: 1 },
+                { texto: "Pensar um pouco e comprar", pontuacao: 2 },
+                { texto: "Comparar preços e planejar", pontuacao: 3 },
+              ],
+            },
+            {
+              texto: "Ao pensar no futuro financeiro, você sente...",
+              opcoes: [
+                { texto: "Ansiedade ou medo", pontuacao: 1 },
+                { texto: "Certo receio, mas esperança", pontuacao: 2 },
+                { texto: "Segurança e controle", pontuacao: 3 },
+              ],
+            },
+            {
+              texto: "Se você perde dinheiro em algo, como reage?",
+              opcoes: [
+                { texto: "Fico arrasado e paro de tentar", pontuacao: 1 },
+                { texto: "Fico chateado, mas aprendo com isso", pontuacao: 2 },
+                { texto: "Anoto e analiso para não repetir", pontuacao: 3 },
+              ],
+            },
+          ];
+
+          let perguntaAtual = 0;
+          let pontuacaoTotal = 0;
+
+          function mostrarPergunta() {
+            const p = perguntas[perguntaAtual];
+            document.getElementById("pergunta").innerText = p.texto;
+            const opcoesDiv = document.getElementById("opcoes");
+            opcoesDiv.innerHTML = "";
+            p.opcoes.forEach((opcao) => {
+              const btn = document.createElement("button");
+              btn.innerText = opcao.texto;
+              btn.onclick = () => responder(opcao.pontuacao);
+              opcoesDiv.appendChild(btn);
+            });
+            atualizarBarra();
+          }
+
+          function atualizarBarra() {
+            const progresso = (perguntaAtual / perguntas.length) * 100;
+            document.getElementById("barraProgresso").style.width =
+              progresso + "%";
+          }
+
+          function responder(pontos) {
+            pontuacaoTotal += pontos;
+            perguntaAtual++;
+            if (perguntaAtual < perguntas.length) {
+              mostrarPergunta();
+            } else {
+              mostrarResultado();
+            }
+          }
+
+          function mostrarResultado() {
+            document.getElementById("pergunta").innerText = "Quiz finalizado!";
+            document.getElementById("opcoes").innerHTML = "";
+            document.getElementById("barraProgresso").style.width = "100%";
+
+            let perfil = "";
+            let texto = "";
+
+            if (pontuacaoTotal <= 7) {
+              perfil = "🔴 Perfil 3: Financeiramente Impulsivo";
+              texto =
+                "Suas emoções influenciam fortemente suas decisões financeiras. É hora de aprender a construir uma relação mais saudável com o dinheiro.";
+            } else if (pontuacaoTotal <= 11) {
+              perfil = "🟡 Perfil 2: Emocional Moderado";
+              texto =
+                "Você tem boas intenções, mas ainda se deixa levar pelas emoções às vezes. Com pequenas mudanças, pode evoluir bastante.";
+            } else {
+              perfil = "✅ Perfil 1: Equilibrado e Consciente";
+              texto =
+                "Você demonstra equilíbrio e lógica nas finanças. Continue assim e compartilhe esse hábito com outras pessoas!";
+            }
+
+            document.getElementById("resultado").innerHTML = `
+          <div class="result-title">${perfil}</div>
+          <div class="result-text">${texto}</div>
+        `;
+          }
+
+          mostrarPergunta();
+        });
+      </script>
+    </div>
+  </body>
+</html>

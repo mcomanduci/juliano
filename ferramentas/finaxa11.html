@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculadora de EBITDA — Compacta e Profissional</title>
+<style>
+:root{
+  --primary:#4fc3f7;
+  --primary-dark:#0288d1;
+  --bg:#f4f7fb;
+  --card:#fff;
+  --text:#07203a;
+  --muted:#6b7280;
+  --glass:rgba(255,255,255,0.05);
+}
+
+/* ===== Reset e corpo ===== */
+html, body {
+  margin:0; padding:0;
+  font-family:Inter, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+body {
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:20px;
+}
+
+.widget-wrap {
+  width:100%;
+  max-width:900px;
+}
+
+.widget {
+  background:var(--card);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+/* ===== Topo ===== */
+.top {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo {
+  width:48px; height:48px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  font-weight:700;
+  font-size:18px;
+}
+h1 {font-size:20px; margin:0;}
+p.lead {margin:2px 0 0; font-size:13px; color:var(--muted);}
+.controls {display:flex; flex-wrap:wrap; gap:8px;}
+
+/* ===== Botões ===== */
+button.btn {
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+  transition:0.2s;
+}
+.btn-primary {background:linear-gradient(90deg,var(--primary),var(--primary-dark)); color:#fff;}
+.btn-primary:hover {opacity:0.85;}
+.btn-ghost {background:transparent; border:1px solid var(--glass); color:var(--text);}
+.btn-ghost:hover {background:var(--glass);}
+
+/* ===== Layout ===== */
+.grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:16px;
+  box-sizing:border-box;
+}
+.card {
+  padding:16px;
+  border-radius:12px;
+  background:var(--bg);
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+}
+label {
+  display:block;
+  font-size:13px;
+  margin-bottom:4px;
+  color:var(--muted);
+}
+input[type=number] {
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid var(--glass);
+  background:transparent;
+  font-size:14px;
+  color:var(--text);
+  box-sizing:border-box;
+}
+.small {font-size:12px; color:var(--muted);}
+.row {display:flex; gap:10px;}
+.col {flex:1;}
+.actions {display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;}
+
+/* ===== Painel ===== */
+.panel {
+  padding:16px;
+  border-radius:12px;
+  background:var(--glass);
+  box-sizing:border-box;
+}
+.result-item {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 0;
+  border-bottom:1px dashed rgba(0,0,0,0.05);
+}
+.result-item:last-child {border-bottom:0;}
+.big {font-size:20px; font-weight:800;}
+.meta {font-size:13px; color:var(--muted);}
+.chart-wrap {
+  margin-top:12px;
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+}
+.chart-wrap canvas {
+  width:100% !important;
+  height:auto !important;
+  display:block;
+}
+
+/* ===== Foco ===== */
+input:focus, button:focus {outline:3px solid rgba(6,182,212,0.2); outline-offset:2px;}
+
+/* ===== Detalhes ===== */
+details {background:var(--glass); padding:8px; border-radius:8px; margin-top:6px;}
+summary {cursor:pointer; font-weight:600;}
+
+/* ===== Responsivo ===== */
+@media (max-width:760px){
+  .grid {grid-template-columns:1fr;}
+  .row {flex-direction: column; gap:8px;}
+  .actions {flex-direction: column; gap:8px;}
+  .panel {margin-top:16px;}
+  input[type=number], button.btn {width:100%; box-sizing:border-box;}
+  .widget-wrap {max-width:100%; padding:0 10px;}
+  h1 {font-size:18px;}
+}
+</style>
+</head>
+<body>
+<main class="widget-wrap">
+<section class="widget" role="region" aria-labelledby="widgetTitle">
+  <div class="top">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">EB</div>
+      <div>
+        <h1 id="widgetTitle">Calculadora de EBITDA</h1>
+        <p class="lead">Calcule EBITDA, EBIT e margens; exporte resultados e visualize em gráficos interativos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <form id="ebitdaForm" onsubmit="return false;">
+        <div class="row">
+          <div class="col">
+            <label for="lucro">Lucro Líquido (R$)</label>
+            <input id="lucro" type="number" step="0.01" value="200000"/>
+          </div>
+          <div class="col">
+            <label for="receita">Receita Líquida (R$)</label>
+            <input id="receita" type="number" step="0.01" placeholder="(opcional)"/>
+          </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+          <div class="col">
+            <label for="juros">Juros (R$)</label>
+            <input id="juros" type="number" step="0.01" value="50000"/>
+          </div>
+          <div class="col">
+            <label for="impostos">Impostos (R$)</label>
+            <input id="impostos" type="number" step="0.01" value="30000"/>
+          </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+          <div class="col">
+            <label for="depre">Depreciação (R$)</label>
+            <input id="depre" type="number" step="0.01" value="20000"/>
+          </div>
+          <div class="col">
+            <label for="amort">Amortização (R$)</label>
+            <input id="amort" type="number" step="0.01" value="10000"/>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="calcBtn" class="btn-primary">Calcular</button>
+          <button id="resetBtn" class="btn btn-ghost">Limpar</button>
+          <button id="exportXlsxBtn" class="btn btn-ghost">Exportar .xlsx</button>
+          <button id="exportCsvBtn" class="btn btn-ghost">Exportar .csv</button>
+        </div>
+      </form>
+    </div>
+
+    <aside class="panel">
+      <div class="result-item"><div class="meta">EBITDA</div><div class="big" id="ebitdaVal">R$ 0,00</div></div>
+      <div class="result-item"><div class="meta">EBIT</div><div class="big" id="ebitVal">R$ 0,00</div></div>
+      <div class="result-item"><div class="meta">Margem EBITDA</div><div class="big" id="margemVal">—</div></div>
+      <div class="result-item"><div class="meta">Margem EBIT</div><div class="big" id="margemEbitVal">—</div></div>
+      <div class="chart-wrap">
+        <canvas id="compChart"></canvas>
+      </div>
+    </aside>
+  </div>
+
+  <section style="margin-top:16px;">
+    <h2>O que esta ferramenta faz</h2>
+    <p class="small">Soma Lucro Líquido + Juros + Impostos + Depreciação + Amortização para calcular EBITDA e margens.</p>
+    <details><summary>Por que usar EBITDA?</summary><p class="small">Permite comparar rentabilidade operacional entre empresas.</p></details>
+    <details><summary>EBITDA substitui fluxo de caixa?</summary><p class="small">Não, mas ajuda a entender desempenho operacional.</p></details>
+  </section>
+</section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmtBR = v => (Number(v)||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+
+async function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+
+function calcular(){
+  const lucro=Number($('lucro').value)||0, juros=Number($('juros').value)||0,
+        impostos=Number($('impostos').value)||0, depre=Number($('depre').value)||0,
+        amort=Number($('amort').value)||0, receita=Number($('receita').value)||0;
+
+  const ebitda=lucro+juros+impostos+depre+amort;
+  const ebit=lucro+juros+impostos;
+  const margemEbitda=receita?(ebitda/receita)*100:null;
+  const margemEbit=receita?(ebit/receita)*100:null;
+
+  $('ebitdaVal').textContent=fmtBR(ebitda);
+  $('ebitVal').textContent=fmtBR(ebit);
+  $('margemVal').textContent=margemEbitda===null?'—':margemEbitda.toFixed(2)+' %';
+  $('margemEbitVal').textContent=margemEbit===null?'—':margemEbit.toFixed(2)+' %';
+
+  if(window.compChart&&window.compChart.data){
+    window.compChart.data.datasets[0].data=[lucro,juros,impostos,depre,amort];
+    window.compChart.update();
+  }
+
+  return {lucro,juros,impostos,depre,amort,receita,ebitda,ebit,margemEbitda,margemEbit};
+}
+
+document.addEventListener('click', async e=>{
+  if(e.target.id==='calcBtn'){calcular();}
+});
+
+(async function init(){
+  await loadScript('https://cdn.jsdelivr.net/npm/chart.js');
+  const ctx=$('compChart').getContext('2d');
+  window.compChart=new Chart(ctx,{
+    type:'doughnut',
+    data:{labels:['Lucro Líquido','Juros','Impostos','Depreciação','Amortização'],
+          datasets:[{data:[200000,50000,30000,20000,10000],
+          backgroundColor:['#4fc3f7','#0288d1','#81c784','#ffb74d','#4db6ac']}]},
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom'}},
+    }
+  });
+  calcular();
+})();
+</script>
+</body>
+</html>

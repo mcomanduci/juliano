@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - finance.me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#007bff",
+              "dark-blue": "#0056b3",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="font-sans text-gray-800 bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-5 flex justify-between items-center py-4"
+      >
+        <a href="index.html" class="text-2xl font-bold text-primary"
+          >finance.me</a
+        >
+        <button
+          id="menu-toggle"
+          class="lg:hidden text-3xl"
+          aria-label="Abrir menu"
+        >
+          ☰
+        </button>
+        <nav
+          id="main-nav"
+          class="hidden lg:block absolute lg:relative top-full left-0 right-0 lg:top-auto bg-white lg:bg-transparent shadow-lg lg:shadow-none"
+        >
+          <ul class="flex flex-col lg:flex-row lg:gap-6">
+            <li>
+              <a
+                href="index.html"
+                class="block px-5 py-3 lg:p-0 font-semibold text-gray-800 border-b border-gray-200 lg:border-b-0 lg:border-b-2 lg:border-transparent hover:text-primary hover:border-primary transition"
+                >Início</a
+              >
+            </li>
+            <li>
+              <a
+                href="blog.html"
+                class="block px-5 py-3 lg:p-0 font-semibold text-primary border-b-2 border-primary lg:border-b-2 hover:text-primary transition"
+                >Blog</a
+              >
+            </li>
+            <li class="relative group">
+              <a
+                href="#"
+                class="dropdown-toggle block px-5 py-3 lg:p-0 font-semibold text-gray-800 border-b border-gray-200 lg:border-b-0 hover:text-primary transition cursor-pointer"
+                >Ferramentas Financeiras ▾</a
+              >
+              <div
+                class="dropdown-menu hidden group-hover:lg:block lg:absolute lg:top-full lg:left-0 bg-gray-50 lg:bg-white lg:min-w-[240px] lg:rounded-lg lg:shadow-xl lg:py-2"
+              >
+                <a
+                  href="#"
+                  class="block px-8 lg:px-4 py-3 hover:bg-gray-100 hover:text-primary transition"
+                  >Calculadora de Juros Compostos</a
+                >
+                <a
+                  href="#"
+                  class="block px-8 lg:px-4 py-3 hover:bg-gray-100 hover:text-primary transition"
+                  >Simulador de Aposentadoria</a
+                >
+                <a
+                  href="#"
+                  class="block px-8 lg:px-4 py-3 hover:bg-gray-100 hover:text-primary transition"
+                  >Planilha de Orçamento</a
+                >
+              </div>
+            </li>
+            <li>
+              <a
+                href="contato.html"
+                class="block px-5 py-3 lg:p-0 font-semibold text-gray-800 border-b border-gray-200 lg:border-b-0 lg:border-b-2 lg:border-transparent hover:text-primary hover:border-primary transition"
+                >Contato</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="py-20">
+        <div class="max-w-7xl mx-auto px-5">
+          <h1 class="text-4xl font-bold text-center mb-3">Blog</h1>
+          <p class="text-center text-lg text-gray-600 mb-12">
+            Análises, guias e notícias do mundo das finanças.
+          </p>
+
+          <div class="flex flex-col lg:flex-row gap-10">
+            <!-- Sidebar / Dropdown for mobile -->
+            <aside class="lg:w-60 flex-shrink-0">
+              <!-- Mobile: Dropdown Button -->
+              <div class="lg:hidden mb-5">
+                <button
+                  id="category-toggle"
+                  class="w-full flex justify-between items-center px-4 py-3 bg-primary text-white font-semibold rounded-lg"
+                >
+                  <span id="selected-category">Categorias: Todos</span>
+                  <span>▾</span>
+                </button>
+                <ul
+                  id="category-dropdown"
+                  class="hidden mt-2 bg-white border border-gray-200 rounded-lg shadow-lg"
+                >
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-4 py-3 border-b border-gray-100 hover:bg-gray-50"
+                      data-filter="all"
+                      data-label="Todos"
+                      >Todos</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-4 py-3 border-b border-gray-100 hover:bg-gray-50"
+                      data-filter="Investimentos"
+                      data-label="Investimentos"
+                      >Investimentos</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-4 py-3 border-b border-gray-100 hover:bg-gray-50"
+                      data-filter="Planejamento"
+                      data-label="Planejamento"
+                      >Planejamento</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-4 py-3 border-b border-gray-100 hover:bg-gray-50"
+                      data-filter="Criptomoedas"
+                      data-label="Criptomoedas"
+                      >Criptomoedas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-4 py-3 border-b border-gray-100 hover:bg-gray-50"
+                      data-filter="Economia"
+                      data-label="Economia"
+                      >Economia</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-4 py-3 border-b border-gray-100 hover:bg-gray-50"
+                      data-filter="Tecnologia"
+                      data-label="Tecnologia"
+                      >Tecnologia</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-4 py-3 hover:bg-gray-50"
+                      data-filter="Carreira"
+                      data-label="Carreira"
+                      >Carreira</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Desktop: Sidebar -->
+              <div class="hidden lg:block">
+                <h3
+                  class="text-xl font-bold mb-5 pb-3 border-b-2 border-gray-200"
+                >
+                  Categorias
+                </h3>
+                <ul class="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-3 py-2 rounded-md bg-primary text-white font-semibold transition hover:bg-dark-blue"
+                      data-filter="all"
+                      data-label="Todos"
+                      >Todos</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-3 py-2 rounded-md text-gray-800 transition hover:bg-gray-100"
+                      data-filter="Investimentos"
+                      data-label="Investimentos"
+                      >Investimentos</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-3 py-2 rounded-md text-gray-800 transition hover:bg-gray-100"
+                      data-filter="Planejamento"
+                      data-label="Planejamento"
+                      >Planejamento</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-3 py-2 rounded-md text-gray-800 transition hover:bg-gray-100"
+                      data-filter="Criptomoedas"
+                      data-label="Criptomoedas"
+                      >Criptomoedas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-3 py-2 rounded-md text-gray-800 transition hover:bg-gray-100"
+                      data-filter="Economia"
+                      data-label="Economia"
+                      >Economia</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-3 py-2 rounded-md text-gray-800 transition hover:bg-gray-100"
+                      data-filter="Tecnologia"
+                      data-label="Tecnologia"
+                      >Tecnologia</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="filter-btn block px-3 py-2 rounded-md text-gray-800 transition hover:bg-gray-100"
+                      data-filter="Carreira"
+                      data-label="Carreira"
+                      >Carreira</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </aside>
+
+            <!-- Posts Grid -->
+            <div
+              class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8"
+            >
+              <!-- Post 1 -->
+              <article
+                class="post-card bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition flex flex-col"
+                data-category="Investimentos"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Pessoa analisando gráficos financeiros"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6 flex flex-col flex-grow">
+                  <span
+                    class="inline-block bg-blue-50 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start"
+                    >Investimentos</span
+                  >
+                  <h3 class="text-xl font-bold mb-3">
+                    Como Começar a Investir com Pouco Dinheiro
+                  </h3>
+                  <p class="text-gray-600 mb-5 flex-grow">
+                    Descubra estratégias práticas para construir seu portfólio
+                    mesmo com um orçamento limitado.
+                  </p>
+                  <a
+                    href="post-exemplo.html"
+                    class="text-primary font-semibold hover:underline self-start"
+                    >Leia Mais →</a
+                  >
+                </div>
+              </article>
+
+              <!-- Post 2 -->
+              <article
+                class="post-card bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition flex flex-col"
+                data-category="Planejamento"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Cofrinho"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6 flex flex-col flex-grow">
+                  <span
+                    class="inline-block bg-blue-50 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start"
+                    >Planejamento</span
+                  >
+                  <h3 class="text-xl font-bold mb-3">
+                    5 Passos para Criar uma Reserva de Emergência Sólida
+                  </h3>
+                  <p class="text-gray-600 mb-5 flex-grow">
+                    Sua segurança financeira começa aqui. Aprenda a montar uma
+                    reserva de emergência.
+                  </p>
+                  <a
+                    href="#"
+                    class="text-primary font-semibold hover:underline self-start"
+                    >Leia Mais →</a
+                  >
+                </div>
+              </article>
+
+              <!-- Post 3 -->
+              <article
+                class="post-card bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition flex flex-col"
+                data-category="Criptomoedas"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Criptomoedas"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6 flex flex-col flex-grow">
+                  <span
+                    class="inline-block bg-blue-50 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start"
+                    >Criptomoedas</span
+                  >
+                  <h3 class="text-xl font-bold mb-3">
+                    O Guia Definitivo sobre Criptomoedas para Iniciantes
+                  </h3>
+                  <p class="text-gray-600 mb-5 flex-grow">
+                    Entenda o que são, como funcionam e os riscos e
+                    oportunidades do mercado.
+                  </p>
+                  <a
+                    href="#"
+                    class="text-primary font-semibold hover:underline self-start"
+                    >Leia Mais →</a
+                  >
+                </div>
+              </article>
+
+              <!-- Post 4 -->
+              <article
+                class="post-card bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition flex flex-col"
+                data-category="Economia"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Economia"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6 flex flex-col flex-grow">
+                  <span
+                    class="inline-block bg-blue-50 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start"
+                    >Economia</span
+                  >
+                  <h3 class="text-xl font-bold mb-3">
+                    Inflação: O que é e como proteger seu dinheiro
+                  </h3>
+                  <p class="text-gray-600 mb-5 flex-grow">
+                    Aprenda como a inflação afeta seu poder de compra e quais
+                    investimentos protegem seu patrimônio.
+                  </p>
+                  <a
+                    href="#"
+                    class="text-primary font-semibold hover:underline self-start"
+                    >Leia Mais →</a
+                  >
+                </div>
+              </article>
+
+              <!-- Post 5 -->
+              <article
+                class="post-card bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition flex flex-col"
+                data-category="Tecnologia"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Tecnologia"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6 flex flex-col flex-grow">
+                  <span
+                    class="inline-block bg-blue-50 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start"
+                    >Tecnologia</span
+                  >
+                  <h3 class="text-xl font-bold mb-3">
+                    Fintechs: A Revolução no Mercado Financeiro
+                  </h3>
+                  <p class="text-gray-600 mb-5 flex-grow">
+                    Conheça as inovações que as fintechs estão trazendo para
+                    gerenciar seu dinheiro.
+                  </p>
+                  <a
+                    href="#"
+                    class="text-primary font-semibold hover:underline self-start"
+                    >Leia Mais →</a
+                  >
+                </div>
+              </article>
+
+              <!-- Post 6 -->
+              <article
+                class="post-card bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition flex flex-col"
+                data-category="Carreira"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Carreira"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6 flex flex-col flex-grow">
+                  <span
+                    class="inline-block bg-blue-50 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start"
+                    >Carreira</span
+                  >
+                  <h3 class="text-xl font-bold mb-3">
+                    Como Negociar um Aumento de Salário
+                  </h3>
+                  <p class="text-gray-600 mb-5 flex-grow">
+                    Dicas práticas e estratégias para você ter sucesso na hora
+                    de negociar uma remuneração melhor.
+                  </p>
+                  <a
+                    href="#"
+                    class="text-primary font-semibold hover:underline self-start"
+                    >Leia Mais →</a
+                  >
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-center py-5 border-t border-gray-200 mt-20">
+      <div class="max-w-7xl mx-auto px-5">
+        <p class="text-sm text-gray-600">
+          &copy; 2025 finance.me. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

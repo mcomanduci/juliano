@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2793888277943433"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div
+      id="calculadoraISO"
+      style="
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        font-family: 'Inter', Arial, sans-serif;
+      "
+    >
+      <h1 style="text-align: center; color: #222">
+        💰 Calculadora ISO Avançada
+      </h1>
+      <p
+        style="
+          text-align: center;
+          color: #555;
+          font-size: 14px;
+          margin-bottom: 20px;
+        "
+      >
+        Calcule seu ganho potencial com opções de ações de forma detalhada.
+      </p>
+
+      <label>Preço de Exercício (por ação):</label>
+      <input
+        id="precoExercicio"
+        type="number"
+        step="0.01"
+        placeholder="Ex: 10.00"
+        style="
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+        "
+      />
+
+      <label>Preço Atual da Ação:</label>
+      <input
+        id="precoAtual"
+        type="number"
+        step="0.01"
+        placeholder="Ex: 50.00"
+        style="
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+        "
+      />
+
+      <label>Número de Ações:</label>
+      <input
+        id="acoes"
+        type="number"
+        placeholder="Ex: 100"
+        style="
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+        "
+      />
+
+      <label>Alíquota de Imposto (%):</label>
+      <input
+        id="imposto"
+        type="number"
+        step="0.01"
+        placeholder="Ex: 15"
+        style="
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+        "
+      />
+
+      <label>Moeda:</label>
+      <select
+        id="moeda"
+        style="
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+        "
+      >
+        <option value="auto">🌍 Detectar automaticamente</option>
+        <option value="USD">🇺🇸 Dólar (USD)</option>
+        <option value="EUR">🇪🇺 Euro (EUR)</option>
+        <option value="BRL">🇧🇷 Real (BRL)</option>
+        <option value="GBP">🇬🇧 Libra (GBP)</option>
+        <option value="JPY">🇯🇵 Iene (JPY)</option>
+        <option value="CAD">🇨🇦 Dólar Canadense (CAD)</option>
+        <option value="AUD">🇦🇺 Dólar Australiano (AUD)</option>
+      </select>
+
+      <button
+        onclick="calcularISO()"
+        style="
+          width: 100%;
+          background: #007bff;
+          color: white;
+          padding: 12px;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 16px;
+        "
+      >
+        Calcular
+      </button>
+
+      <h3
+        id="resultado"
+        style="text-align: center; margin-top: 20px; color: #111"
+      ></h3>
+
+      <canvas
+        id="graficoISO"
+        width="600"
+        height="260"
+        style="max-width: 100%; height: auto; margin-top: 20px"
+      ></canvas>
+
+      <h4 style="margin-top: 20px">📜 Histórico (últimas 5 simulações)</h4>
+      <ul id="historico" style="list-style: none; padding-left: 0"></ul>
+
+      <p
+        style="
+          text-align: center;
+          margin-top: 15px;
+          font-size: 13px;
+          color: #777;
+        "
+      >
+        🔗 Quer transformar esses cálculos em relatórios automáticos?
+        <a
+          href="https://finaxa.me"
+          target="_blank"
+          style="color: #007bff; text-decoration: none; font-weight: 600"
+          >Acesse Finaxa.me</a
+        >
+      </p>
+    </div>
+
+    <!-- =========================================================
+     SCRIPT DE CÁLCULO
+========================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      let historico = [];
+      let chart;
+
+      async function detectarMoeda() {
+        try {
+          const res = await fetch("https://ipapi.co/json/");
+          const data = await res.json();
+          const mapa = {
+            BR: "BRL",
+            US: "USD",
+            GB: "GBP",
+            EU: "EUR",
+            JP: "JPY",
+            CA: "CAD",
+            AU: "AUD",
+          };
+          return mapa[data.country_code] || "USD";
+        } catch {
+          return "USD";
+        }
+      }
+
+      async function calcularISO() {
+        const precoExercicio = parseFloat(
+          document.getElementById("precoExercicio").value
+        );
+        const precoAtual = parseFloat(
+          document.getElementById("precoAtual").value
+        );
+        const acoes = parseFloat(document.getElementById("acoes").value);
+        const imposto = parseFloat(
+          document.getElementById("imposto").value || 0
+        );
+        let moeda = document.getElementById("moeda").value;
+
+        if (moeda === "auto") moeda = await detectarMoeda();
+        if (isNaN(precoExercicio) || isNaN(precoAtual) || isNaN(acoes)) {
+          document.getElementById("resultado").innerHTML =
+            "⚠️ Preencha todos os campos corretamente.";
+          return;
+        }
+
+        const ganhoBruto = (precoAtual - precoExercicio) * acoes;
+        const ganhoLiquido = ganhoBruto * (1 - imposto / 100);
+        const formatador = new Intl.NumberFormat(undefined, {
+          style: "currency",
+          currency: moeda,
+        });
+
+        document.getElementById(
+          "resultado"
+        ).innerHTML = `💵 Ganho Bruto: <strong>${formatador.format(
+          ganhoBruto
+        )}</strong><br>
+     💸 Ganho Líquido: <strong>${formatador.format(ganhoLiquido)}</strong>`;
+
+        historico.unshift({ bruto: ganhoBruto, liquido: ganhoLiquido, moeda });
+        if (historico.length > 5) historico.pop();
+        const ul = document.getElementById("historico");
+        ul.innerHTML = "";
+        historico.forEach((item, i) => {
+          ul.innerHTML += `<li>Simulação ${i + 1}: ${formatador.format(
+            item.bruto
+          )} → ${formatador.format(item.liquido)}</li>`;
+        });
+
+        const labels = [],
+          dataPoints = [];
+        for (let i = 0; i <= 10; i++) {
+          labels.push(`+${i * 10}%`);
+          dataPoints.push(ganhoBruto * (1 + i / 10));
+        }
+
+        if (chart) chart.destroy();
+        const canvas = document.getElementById("graficoISO");
+        if (!canvas) {
+          console.error("Canvas #graficoISO não encontrado");
+          document.getElementById("resultado").innerHTML +=
+            "<br>⚠️ Erro: elemento de gráfico não encontrado.";
+          return;
+        }
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          console.error("Context2D não disponível no canvas");
+          document.getElementById("resultado").innerHTML +=
+            "<br>⚠️ Erro ao obter contexto do canvas.";
+          return;
+        }
+        try {
+          chart = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels,
+              datasets: [
+                {
+                  label: "Ganho Bruto Potencial",
+                  data: dataPoints,
+                  borderColor: "#007bff",
+                  fill: true,
+                  backgroundColor: "rgba(0,123,255,0.1)",
+                  tension: 0.3,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              // Usamos maintainAspectRatio:true com aspectRatio baseado nos atributos
+              // do canvas para evitar altura zero em alguns navegadores/containers.
+              maintainAspectRatio: true,
+              aspectRatio: 600 / 260,
+              plugins: { legend: { display: true } },
+            },
+          });
+        } catch (e) {
+          console.error("Erro ao criar o gráfico:", e);
+          document.getElementById("resultado").innerHTML +=
+            "<br>⚠️ Erro ao desenhar o gráfico. Abra o console para mais detalhes.";
+        }
+      }
+    </script>
+
+    <!-- =========================================================
+     GUIA DE USO DA CALCULADORA
+========================================================= -->
+    <div
+      style="
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        font-family: 'Inter', Arial, sans-serif;
+      "
+    >
+      <h2 style="text-align: center; color: #222">
+        📘 Guia de Uso - Calculadora ISO
+      </h2>
+
+      <h3 style="color: #007bff">1. O que é ISO?</h3>
+      <p style="color: #555; font-size: 14px; line-height: 1.5">
+        ISO significa <strong>Incentive Stock Option</strong> — uma opção de
+        ações concedida a funcionários para comprar ações a um
+        <strong>preço fixo</strong>, mesmo que o valor de mercado suba.
+      </p>
+
+      <h3 style="color: #007bff">2. O que é o preço de exercício?</h3>
+      <p style="color: #555; font-size: 14px; line-height: 1.5">
+        É o valor pago por ação ao exercer a opção. Ex: se o preço de exercício
+        for <strong>US$10</strong> e a ação estiver a <strong>US$50</strong>, o
+        ganho é <strong>US$40</strong> por ação.
+      </p>
+
+      <h3 style="color: #007bff">3. Como usar</h3>
+      <ol
+        style="
+          color: #555;
+          font-size: 14px;
+          line-height: 1.5;
+          padding-left: 20px;
+        "
+      >
+        <li>Insira o <strong>preço de exercício</strong> por ação.</li>
+        <li>Insira o <strong>preço atual</strong> da ação.</li>
+        <li>Informe o <strong>número de ações</strong>.</li>
+        <li>Opcional: adicione a <strong>alíquota de imposto</strong>.</li>
+        <li>Escolha a moeda ou use a <strong>detecção automática</strong>.</li>
+        <li>Clique em <strong>Calcular</strong>.</li>
+      </ol>
+
+      <h3 style="color: #007bff">4. Funcionalidades avançadas</h3>
+      <ul
+        style="
+          color: #555;
+          font-size: 14px;
+          line-height: 1.5;
+          padding-left: 20px;
+        "
+      >
+        <li>📊 Gráfico de crescimento do lucro por valorização.</li>
+        <li>📝 Histórico das últimas 5 simulações.</li>
+        <li>💰 Cálculo automático de ganho líquido.</li>
+        <li>🌍 Detecção automática de moeda.</li>
+        <li>🔗 Integração com Finaxa.me.</li>
+      </ul>
+
+      <h3 style="color: #007bff">5. Dicas práticas</h3>
+      <p style="color: #555; font-size: 14px; line-height: 1.5">
+        - Verifique sempre a alíquota de imposto local.<br />
+        - Compare diferentes cenários no histórico.<br />
+        - Use o gráfico para simular valorização da ação.<br />
+        - Para relatórios automáticos, visite
+        <a
+          href="https://finaxa.me"
+          target="_blank"
+          style="color: #007bff; text-decoration: none; font-weight: 600"
+          >Finaxa.me</a
+        >.
+      </p>
+    </div>
+  </body>
+</html>

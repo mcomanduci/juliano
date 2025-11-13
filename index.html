@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finaxa.me - Sua Jornada para a Liberdade Financeira</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#007bff",
+              "dark-blue": "#0056b3",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="font-sans text-gray-800 bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-5 flex justify-between items-center py-4"
+      >
+        <a href="index.html" class="text-2xl font-bold text-primary"
+          >Finaxa.me</a
+        >
+        <button
+          id="menu-toggle"
+          class="lg:hidden text-3xl"
+          aria-label="Abrir menu"
+        >
+          ☰
+        </button>
+        <nav
+          id="main-nav"
+          class="hidden lg:block absolute lg:relative top-full left-0 right-0 lg:top-auto bg-white lg:bg-transparent shadow-lg lg:shadow-none"
+        >
+          <ul class="flex flex-col lg:flex-row lg:gap-6">
+            <li>
+              <a
+                href="index.html"
+                class="block px-5 py-3 lg:p-0 font-semibold text-primary border-b-2 border-primary lg:border-b-2 hover:text-primary transition"
+                >Início</a
+              >
+            </li>
+            <li>
+              <a
+                href="blog.html"
+                class="block px-5 py-3 lg:p-0 font-semibold text-gray-800 border-b border-gray-200 lg:border-b-0 lg:border-b-2 lg:border-transparent hover:text-primary hover:border-primary transition"
+                >Blog</a
+              >
+            </li>
+            <li class="relative group">
+              <a
+                href="#"
+                class="dropdown-toggle block px-5 py-3 lg:p-0 font-semibold text-gray-800 border-b border-gray-200 lg:border-b-0 hover:text-primary transition cursor-pointer"
+                >Ferramentas Financeiras ▾</a
+              >
+              <div
+                class="dropdown-menu hidden group-hover:lg:block lg:absolute lg:top-full lg:left-0 bg-gray-50 lg:bg-white lg:min-w-[240px] lg:rounded-lg lg:shadow-xl lg:py-2"
+              >
+                <a
+                  href="#"
+                  class="block px-8 lg:px-4 py-3 hover:bg-gray-100 hover:text-primary transition"
+                  >Calculadora de Juros Compostos</a
+                >
+                <a
+                  href="#"
+                  class="block px-8 lg:px-4 py-3 hover:bg-gray-100 hover:text-primary transition"
+                  >Simulador de Aposentadoria</a
+                >
+                <a
+                  href="#"
+                  class="block px-8 lg:px-4 py-3 hover:bg-gray-100 hover:text-primary transition"
+                  >Planilha de Orçamento</a
+                >
+              </div>
+            </li>
+            <li>
+              <a
+                href="contato.html"
+                class="block px-5 py-3 lg:p-0 font-semibold text-gray-800 border-b border-gray-200 lg:border-b-0 lg:border-b-2 lg:border-transparent hover:text-primary hover:border-primary transition"
+                >Contato</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="bg-gray-50 text-center py-20">
+        <div class="max-w-7xl mx-auto px-5">
+          <h1 class="text-5xl md:text-6xl font-bold mb-4">
+            Conquiste sua Independência Financeira
+          </h1>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            Notícias, análises e ferramentas para transformar sua vida
+            financeira. Comece hoje mesmo.
+          </p>
+          <a
+            href="blog.html"
+            class="inline-block bg-primary text-white font-semibold px-8 py-4 rounded-lg hover:bg-dark-blue transform hover:-translate-y-1 transition"
+            >Explore o Blog</a
+          >
+        </div>
+      </section>
+
+      <!-- Blog Preview -->
+      <section class="py-20">
+        <div class="max-w-7xl mx-auto px-5">
+          <h2 class="text-4xl font-bold text-center mb-12">Últimas do Blog</h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+          >
+            <!-- Post Card 1 -->
+            <article
+              class="bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition flex flex-col"
+            >
+              <a href="post-exemplo.html">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Pessoa analisando gráficos financeiros em um tablet."
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6 flex flex-col flex-grow">
+                  <span
+                    class="inline-block bg-blue-50 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start"
+                    >Investimentos</span
+                  >
+                  <h3 class="text-xl font-bold mb-3">
+                    Como Começar a Investir com Pouco Dinheiro
+                  </h3>
+                  <p class="text-gray-600 mb-5 flex-grow">
+                    Descubra estratégias práticas para construir seu portfólio
+                    mesmo com um orçamento limitado. O primeiro passo é o mais
+                    importante.
+                  </p>
+                  <a
+                    href="post-exemplo.html"
+                    class="text-primary font-semibold hover:underline self-start"
+                    >Leia Mais →</a
+                  >
+                </div>
+              </a>
+            </article>
+
+            <!-- Post Card 2 -->
+            <article
+              class="bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition flex flex-col"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                alt="Cofrinho em forma de porco ao lado de moedas."
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <span
+                  class="inline-block bg-blue-50 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start"
+                  >Planejamento</span
+                >
+                <h3 class="text-xl font-bold mb-3">
+                  5 Passos para Criar uma Reserva de Emergência Sólida
+                </h3>
+                <p class="text-gray-600 mb-5 flex-grow">
+                  Sua segurança financeira começa aqui. Aprenda a montar uma
+                  reserva de emergência que te proteja de imprevistos.
+                </p>
+                <a
+                  href="blog.html"
+                  class="text-primary font-semibold hover:underline self-start"
+                  >Leia Mais →</a
+                >
+              </div>
+            </article>
+
+            <!-- Post Card 3 -->
+            <article
+              class="bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition flex flex-col"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                alt="Símbolo de criptomoeda em um ambiente digital."
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <span
+                  class="inline-block bg-blue-50 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start"
+                  >Criptomoedas</span
+                >
+                <h3 class="text-xl font-bold mb-3">
+                  O Guia Definitivo sobre Criptomoedas para Iniciantes
+                </h3>
+                <p class="text-gray-600 mb-5 flex-grow">
+                  Entenda o que são, como funcionam e os riscos e oportunidades
+                  do mercado de criptoativos. Um guia completo para começar.
+                </p>
+                <a
+                  href="blog.html"
+                  class="text-primary font-semibold hover:underline self-start"
+                  >Leia Mais →</a
+                >
+              </div>
+            </article>
+          </div>
+          <div class="text-center mt-12">
+            <a
+              href="blog.html"
+              class="inline-block text-lg font-semibold text-primary px-6 py-3 border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition"
+              >Ver todos os posts</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-5">
+          <h2 class="text-4xl font-bold text-center mb-12">
+            Recursos Feitos para Você
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div>
+              <div class="text-5xl mb-4">📚</div>
+              <h3 class="text-2xl font-bold mb-3">Cursos Interativos</h3>
+              <p class="text-gray-600">
+                Aprenda finanças do básico ao avançado com aulas práticas e
+                conteúdo atualizado.
+              </p>
+            </div>
+            <div>
+              <div class="text-5xl mb-4">💬</div>
+              <h3 class="text-2xl font-bold mb-3">Comunidade Ativa</h3>
+              <p class="text-gray-600">
+                Troque ideias, tire dúvidas e participe de debates com outros
+                apaixonados por finanças.
+              </p>
+            </div>
+            <div>
+              <div class="text-5xl mb-4">🛠️</div>
+              <h3 class="text-2xl font-bold mb-3">Ferramentas Práticas</h3>
+              <p class="text-gray-600">
+                Utilize nossas calculadoras e planilhas para tomar decisões
+                financeiras mais inteligentes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="py-20">
+        <div class="max-w-7xl mx-auto px-5">
+          <h2 class="text-4xl font-bold text-center mb-12">
+            O que nossos usuários dizem
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-gray-50 p-8 rounded-xl border-l-4 border-primary">
+              <p class="text-gray-700 italic mb-4">
+                "O Finaxa.me mudou minha relação com o dinheiro. Os conteúdos
+                são claros e o suporte é excelente. Recomendo a todos!"
+              </p>
+              <cite class="font-semibold text-gray-800">– Bernardo Assis</cite>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-xl border-l-4 border-primary">
+              <p class="text-gray-700 italic mb-4">
+                "Sempre tive medo de lidar com finanças, mas aqui encontrei
+                segurança e passos simples para retomar o controle. Me sinto
+                mais confiante."
+              </p>
+              <cite class="font-semibold text-gray-800">– Ana Paula</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Us -->
+      <section class="bg-primary text-white py-20 text-center">
+        <div class="max-w-7xl mx-auto px-5">
+          <h2 class="text-4xl font-bold mb-5">Nossa Missão</h2>
+          <p class="text-lg max-w-3xl mx-auto opacity-90">
+            No Finaxa.me, oferecemos informações atualizadas sobre finanças,
+            incluindo dicas para gestão financeira e aulas práticas. Nosso
+            objetivo é fornecer o conhecimento necessário para que você atinja a
+            independência financeira, participando de uma comunidade que
+            compartilha e cresce junto.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-center py-5 border-t border-gray-200 mt-20">
+      <div class="max-w-7xl mx-auto px-5">
+        <p class="text-sm text-gray-600">
+          &copy; 2025 Finaxa.me. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

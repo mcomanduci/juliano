@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finaxa | Ferramentas e Calculadoras Financeiras 2025</title>
+
+  <!-- JSON-LD Schema.org para SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Finaxa Ferramentas Financeiras 2025",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "url": "https://finaxa.me/",
+    "description": "Coleção completa de calculadoras financeiras automáticas com detecção de país. Inclui orçamento, metas, dívidas e impostos (Brasil, EUA e global).",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Finaxa.me",
+      "url": "https://finaxa.me"
+    },
+    "inLanguage": "pt-BR"
+  }
+  </script>
+
+  <style>
+    :root {
+      --green: #027a4f;
+      --green-dark: #01582f;
+      --bg: #f7f9fb;
+      --card: #fff;
+      --radius: 12px;
+      --shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    header {
+      max-width: 960px;
+      margin: 0 auto 30px auto;
+      background: var(--card);
+      padding: 30px 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    header .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--green);
+    }
+    h1 {
+      margin: 10px 0;
+      color: var(--green-dark);
+      font-size: 28px;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 30px 40px;
+      box-shadow: var(--shadow);
+    }
+    h2, h3 {
+      text-align: center;
+      color: var(--green-dark);
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type=number], input[type=text] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 20px;
+      background-color: var(--green);
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: var(--green-dark);
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .positive { background-color: #d4edda; color: #155724; }
+    .negative { background-color: #f8d7da; color: #721c24; }
+    .neutral { background-color: #fff3cd; color: #856404; }
+    .section {
+      margin-bottom: 40px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 30px;
+    }
+    @media (max-width: 700px) {
+      .container, header { padding: 20px; }
+      h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Finaxa</div>
+    <h1>Ferramentas Financeiras 2025</h1>
+    <p>Calculadoras Inteligentes com Detecção Automática de País 🌍</p>
+  </header>
+
+  <div class="container">
+
+    <!-- 1️⃣ ORÇAMENTO -->
+    <section class="section">
+      <h3>Orçamento Familiar Avançado</h3>
+      <form id="budgetForm">
+        <label>Renda Principal (R$):</label>
+        <input type="number" id="incomeMain" min="0" step="0.01" required />
+
+        <label>Outras Rendas (R$):</label>
+        <input type="number" id="incomeExtra" min="0" step="0.01" value="0" />
+
+        <label>Despesas Fixas (R$):</label>
+        <input type="number" id="expensesFixed" min="0" step="0.01" required />
+
+        <label>Despesas Variáveis (R$):</label>
+        <input type="number" id="expensesVariable" min="0" step="0.01" value="0" />
+
+        <button type="submit">Calcular Saldo Mensal</button>
+      </form>
+      <div id="budgetResult" class="result"></div>
+    </section>
+
+    <!-- 2️⃣ META FINANCEIRA -->
+    <section class="section">
+      <h3>Meta Financeira com Rendimento</h3>
+      <form id="goalForm">
+        <label>Valor da Meta (R$):</label>
+        <input type="number" id="goalAmount" min="0" step="0.01" required />
+
+        <label>Poupança Inicial (R$):</label>
+        <input type="number" id="initialSaving" min="0" step="0.01" value="0" />
+
+        <label>Prazo (meses):</label>
+        <input type="number" id="goalMonths" min="1" required />
+
+        <label>Juros Mensal Estimado (%):</label>
+        <input type="number" id="goalInterest" min="0" step="0.01" value="0.5" />
+
+        <button type="submit">Calcular Poupança Necessária</button>
+      </form>
+      <div id="goalResult" class="result"></div>
+    </section>
+
+    <!-- 3️⃣ DÍVIDA -->
+    <section class="section">
+      <h3>Simulador de Dívida e Quitação</h3>
+      <form id="debtForm">
+        <label>Valor da Dívida (R$):</label>
+        <input type="number" id="debtAmount" min="0" step="0.01" required />
+
+        <label>Taxa de Juros Mensal (%):</label>
+        <input type="number" id="debtInterest" min="0" step="0.01" required />
+
+        <label>Pagamento Mensal (R$):</label>
+        <input type="number" id="debtPayment" min="0" step="0.01" required />
+
+        <button type="submit">Simular Pagamento</button>
+      </form>
+      <div id="debtResult" class="result"></div>
+    </section>
+
+    <!-- 4️⃣ IMPOSTOS INTERNACIONAIS -->
+    <section class="section">
+      <h3 id="taxTitle">Calculadora de Impostos 2025</h3>
+      <label for="renda">Informe sua renda anual:</label>
+      <input type="number" id="renda" placeholder="Ex: 50000" />
+      <button id="btnTax">Calcular Imposto</button>
+      <div id="resultado" class="result"></div>
+    </section>
+
+  </div>
+
+  <script>
+    let paisAtual = "Brazil";
+
+    // ====== ORÇAMENTO ======
+    document.getElementById('budgetForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const income = (+incomeMain.value || 0) + (+incomeExtra.value || 0);
+      const expenses = (+expensesFixed.value || 0) + (+expensesVariable.value || 0);
+      const saldo = income - expenses;
+      const res = document.getElementById('budgetResult');
+      if (saldo > 0) {
+        res.textContent = `Saldo positivo: R$ ${saldo.toFixed(2)}. Excelente controle!`;
+        res.className = "result positive";
+      } else if (saldo < 0) {
+        res.textContent = `Saldo negativo: R$ ${saldo.toFixed(2)}. Reveja seus gastos!`;
+        res.className = "result negative";
+      } else {
+        res.textContent = "Saldo zero. Tente aumentar renda ou reduzir despesas.";
+        res.className = "result neutral";
+      }
+    });
+
+    // ====== META ======
+    goalForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const FV = +goalAmount.value, PV = +initialSaving.value, n = +goalMonths.value, i = +goalInterest.value / 100;
+      const r = document.getElementById('goalResult');
+      if (i === 0) {
+        const pmt = (FV - PV) / n;
+        r.textContent = `Você deve poupar R$ ${pmt.toFixed(2)} por mês (sem juros).`;
+        r.className = "result neutral";
+        return;
+      }
+      const fator = (Math.pow(1 + i, n) - 1) / i;
+      const pmt = (FV - PV * Math.pow(1 + i, n)) / fator;
+      r.textContent = `Para atingir R$ ${FV.toFixed(2)} com juros mensais de ${(i*100).toFixed(2)}%, poupe R$ ${pmt.toFixed(2)} por mês.`;
+      r.className = "result positive";
+    });
+
+    // ====== DÍVIDA ======
+    debtForm.addEventListener('submit', e => {
+      e.preventDefault();
+      let saldo = +debtAmount.value, taxa = +debtInterest.value / 100, pagamento = +debtPayment.value;
+      const r = document.getElementById('debtResult');
+      if (pagamento <= saldo * taxa) {
+        r.textContent = "Pagamento insuficiente para cobrir juros.";
+        r.className = "result negative";
+        return;
+      }
+      let meses = 0, total = 0;
+      while (saldo > 0 && meses < 1000) {
+        const juros = saldo * taxa;
+        saldo -= (pagamento - juros);
+        total += pagamento;
+        meses++;
+      }
+      const jurosTotais = total - +debtAmount.value;
+      r.innerHTML = `Dívida quitada em ${meses} meses<br>Total pago: R$ ${total.toFixed(2)}<br>Juros: R$ ${jurosTotais.toFixed(2)}`;
+      r.className = "result neutral";
+    });
+
+    // ====== IMPOSTOS ======
+    document.getElementById('btnTax').addEventListener('click', () => calcularImpostoGlobal());
+
+    function calcularImpostoGlobal() {
+      const renda = parseFloat(document.getElementById("renda").value);
+      const out = document.getElementById("resultado");
+      if (!renda || renda <= 0) {
+        out.textContent = "Informe uma renda válida.";
+        return;
+      }
+      if (paisAtual === "United States") {
+        const selfTax = renda * 0.153;
+        const federal = calcularFederalTaxEUA(renda);
+        out.innerHTML = `Self-employment tax: US$ ${selfTax.toFixed(2)}<br>Federal tax: US$ ${federal.toFixed(2)}<br>Total: US$ ${(selfTax + federal).toFixed(2)}`;
+      } else if (paisAtual === "Brazil") {
+        const mensal = renda / 12;
+        const inss = Math.min(0.14 * mensal, 908.86);
+        const base = mensal - inss;
+        let ir = 0;
+        if (base > 4664.68) ir = base * 0.275 - 884.96;
+        else if (base > 3751.05) ir = base * 0.225 - 651.73;
+        else if (base > 2826.65) ir = base * 0.15 - 370.40;
+        else if (base > 2112) ir = base * 0.075 - 158.40;
+        out.innerHTML = `INSS: R$ ${inss.toFixed(2)}<br>IRRF: R$ ${ir.toFixed(2)}<br>Total Anual: R$ ${((inss + ir) * 12).toFixed(2)}`;
+      } else {
+        out.innerHTML = `Estimated tax (15%): $${(renda * 0.15).toFixed(2)}`;
+      }
+    }
+
+    function calcularFederalTaxEUA(renda) {
+      const faixas = [
+        { teto: 11600, aliq: 0.10 },
+        { teto: 47150, aliq: 0.12 },
+        { teto: 100525, aliq: 0.22 },
+        { teto: 191950, aliq: 0.24 },
+        { teto: 243725, aliq: 0.32 },
+        { teto: 609350, aliq: 0.35 },
+        { teto: Infinity, aliq: 0.37 }
+      ];
+      let imposto = 0, prev = 0;
+      for (const f of faixas) {
+        if (renda > prev) {
+          const fatia = Math.min(renda, f.teto) - prev;
+          imposto += fatia * f.aliq;
+          prev = f.teto;
+        } else break;
+      }
+      return imposto;
+    }
+
+    fetch("https://ipapi.co/json/")
+      .then(r => r.json())
+      .then(d => { paisAtual = d.country_name; })
+      .catch(() => {
+        const lang = navigator.language || "en";
+        paisAtual = lang.startsWith("pt") ? "Brazil" : "United States";
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - finance.me</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <a href="index.html" class="logo">finance.me</a>
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+        <nav>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropbtn">Ferramentas Financeiras &#9662;</a>
+              <div class="dropdown-content">
+                <a href="#">Calculadora de Juros Compostos</a>
+                <a href="#">Simulador de Aposentadoria</a>
+                <a href="#">Planilha de Orçamento</a>
+              </div>
+            </li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="blog-full">
+        <div class="container">
+          <h1>Blog</h1>
+          <p class="subtitle">
+            Análises, guias e notícias do mundo das finanças.
+          </p>
+
+          <div class="blog-layout">
+            <aside class="sidebar">
+              <h3>Categorias</h3>
+              <ul class="category-filter">
+                <li>
+                  <a href="#" class="filter-btn active" data-filter="all"
+                    >Todos</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="filter-btn" data-filter="Investimentos"
+                    >Investimentos</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="filter-btn" data-filter="Planejamento"
+                    >Planejamento</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="filter-btn" data-filter="Criptomoedas"
+                    >Criptomoedas</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="filter-btn" data-filter="Economia"
+                    >Economia</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="filter-btn" data-filter="Tecnologia"
+                    >Tecnologia</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="filter-btn" data-filter="Carreira"
+                    >Carreira</a
+                  >
+                </li>
+              </ul>
+            </aside>
+            <div class="post-grid-full">
+              <article class="post-card" data-category="Investimentos">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Pessoa analisando gráficos financeiros em um tablet."
+                />
+                <div class="post-content">
+                  <span class="post-category">Investimentos</span>
+                  <h3>Como Começar a Investir com Pouco Dinheiro</h3>
+                  <p>
+                    Descubra estratégias práticas para construir seu portfólio
+                    mesmo com um orçamento limitado. O primeiro passo é o mais
+                    importante.
+                  </p>
+                  <a href="#" class="read-more">Leia Mais &rarr;</a>
+                </div>
+              </article>
+              <article class="post-card" data-category="Planejamento">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Cofrinho em forma de porco ao lado de moedas."
+                />
+                <div class="post-content">
+                  <span class="post-category">Planejamento</span>
+                  <h3>5 Passos para Criar uma Reserva de Emergência Sólida</h3>
+                  <p>
+                    Sua segurança financeira começa aqui. Aprenda a montar uma
+                    reserva de emergência que te proteja de imprevistos.
+                  </p>
+                  <a href="#" class="read-more">Leia Mais &rarr;</a>
+                </div>
+              </article>
+              <article class="post-card" data-category="Criptomoedas">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Símbolo de criptomoeda em um ambiente digital."
+                />
+                <div class="post-content">
+                  <span class="post-category">Criptomoedas</span>
+                  <h3>O Guia Definitivo sobre Criptomoedas para Iniciantes</h3>
+                  <p>
+                    Entenda o que são, como funcionam e os riscos e
+                    oportunidades do mercado de criptoativos. Um guia completo
+                    para começar.
+                  </p>
+                  <a href="#" class="read-more">Leia Mais &rarr;</a>
+                </div>
+              </article>
+              <article class="post-card" data-category="Economia">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Mãos trocando dinheiro."
+                />
+                <div class="post-content">
+                  <span class="post-category">Economia</span>
+                  <h3>Inflação: O que é e como proteger seu dinheiro</h3>
+                  <p>
+                    Aprenda como a inflação afeta seu poder de compra e quais
+                    investimentos podem te ajudar a preservar seu patrimônio a
+                    longo prazo.
+                  </p>
+                  <a href="#" class="read-more">Leia Mais &rarr;</a>
+                </div>
+              </article>
+              <article class="post-card" data-category="Tecnologia">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Pessoa usando um notebook com gráficos na tela."
+                />
+                <div class="post-content">
+                  <span class="post-category">Tecnologia</span>
+                  <h3>Fintechs: A Revolução no Mercado Financeiro</h3>
+                  <p>
+                    Conheça as inovações que as fintechs estão trazendo e como
+                    você pode se beneficiar das novas tecnologias para gerenciar
+                    seu dinheiro.
+                  </p>
+                  <a href="#" class="read-more">Leia Mais &rarr;</a>
+                </div>
+              </article>
+              <article class="post-card" data-category="Carreira">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                  alt="Reunião de negócios com pessoas analisando documentos."
+                />
+                <div class="post-content">
+                  <span class="post-category">Carreira</span>
+                  <h3>Como Negociar um Aumento de Salário</h3>
+                  <p>
+                    Dicas práticas e estratégias para você se preparar e ter
+                    sucesso na hora de negociar uma remuneração melhor.
+                  </p>
+                  <a href="#" class="read-more">Leia Mais &rarr;</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer-bar">
+      <div class="container">
+        <p>&copy; 2025 finance.me. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Script do filtro de categoria
+      document.addEventListener("DOMContentLoaded", () => {
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const postCards = document.querySelectorAll(".post-card");
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            const filter = button.getAttribute("data-filter");
+
+            postCards.forEach((card) => {
+              if (
+                filter === "all" ||
+                card.getAttribute("data-category") === filter
+              ) {
+                card.style.display = "flex";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+      });
+
+      // Script do menu hamburger
+      const menuToggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".main-header nav");
+
+      menuToggle.addEventListener("click", () => {
+        nav.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
